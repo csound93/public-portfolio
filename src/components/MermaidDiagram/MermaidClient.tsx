@@ -2,18 +2,20 @@
 
 import { useEffect, useRef, useState } from 'react';
 import mermaid from 'mermaid';
+import DOMPurify from 'isomorphic-dompurify';
 
 interface MermaidProps {
   chart: string;
 }
 
-export function MermaidDiagram({ chart }: MermaidProps) {
+export default function MermaidClient({ chart }: MermaidProps) {
   const [svg, setSvg] = useState<string>('');
-  const id = useRef(`mermaid-${Math.random().toString(36).substr(2, 9)}`);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const renderDiagram = async () => {
       try {
+        // Mermaid 초기화
         mermaid.initialize({
           startOnLoad: false,
           theme: 'dark',
@@ -21,10 +23,17 @@ export function MermaidDiagram({ chart }: MermaidProps) {
           fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
         });
 
-        const { svg } = await mermaid.render(id.current, chart);
-        setSvg(svg);
+        // 차트 ID 생성
+        const id = `mermaid-${Date.now()}`;
+        
+        // 다이어그램 렌더링
+        const { svg } = await mermaid.render(id, chart);
+        // SVG 살균
+        const sanitizedSvg = DOMPurify.sanitize(svg);
+        setSvg(sanitizedSvg);
       } catch (error) {
         console.error('Failed to render mermaid diagram:', error);
+        setSvg('Failed to render diagram');
       }
     };
 
@@ -32,8 +41,9 @@ export function MermaidDiagram({ chart }: MermaidProps) {
   }, [chart]);
 
   return (
-    <div
-      className="mermaid"
+    <div 
+      ref={containerRef} 
+      className="mermaid" 
       dangerouslySetInnerHTML={{ __html: svg }}
     />
   );

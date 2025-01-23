@@ -1,6 +1,6 @@
 import type { MDXComponents } from 'mdx/types'
 import { CopyButton } from './components/CopyButton'
-import { MermaidDiagram } from './components/MermaidDiagram'
+import { MermaidDiagram } from './components/MermaidDiagram/index'
 import React, { PropsWithChildren, ReactElement } from 'react'
 
 interface PreProps extends React.HTMLAttributes<HTMLPreElement> {

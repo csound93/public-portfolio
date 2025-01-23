@@ -12,15 +12,15 @@
 
 .markdown-body {
   box-sizing: border-box;
-  min-width: 200px;
-  max-width: 980px;
+  min-width: 12.5rem;
+  max-width: 61.25rem;
   margin: 0 auto;
-  padding: 45px;
+  padding: 2.8125rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .markdown-body {
-    padding: 15px;
+    padding: 0.9375rem;
   }
 }
 
@@ -29,6 +29,7 @@
   position: relative;
   margin: 1rem 0;
   padding: 1rem;
+  padding-top: 2.5rem;
   border-radius: 0.5rem;
   background-color: #1f2937 !important;
   overflow-x: auto;
@@ -39,6 +40,32 @@
   line-height: 1.5;
   font-size: 0.875rem;
   counter-reset: line;
+  padding-top: 1.5rem; /* 1rem에서 1.5rem로 증가 */
+}
+
+/* 코드 블록 title 스타일링 */
+.markdown-body pre[data-language]::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.25rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+/* 코드 블록 caption 스타일링 */
+.markdown-body pre::after {
+  content: attr(data-caption);
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #9ca3af;
+  text-align: center;
 }
 
 [data-line] {
@@ -46,6 +73,8 @@
   padding-left: 3rem;
   padding-right: 1rem;
   border-left: 2px solid transparent;
+  position: relative;
+  top: 1rem; /* 0.5rem에서 1rem으로 증가 */
 }
 
 [data-line]::before {

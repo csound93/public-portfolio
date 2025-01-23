@@ -6,7 +6,7 @@ import { Chart } from '@/components/Chart'
 
 ## 1. 기본 마크다운 문법
 
-일반 텍스트와 **굵은 글씨**, *기울임체*, ~~취소선~~ 을 사용할 수 있습니다.
+일반 텍스트와 **굵은 글씨**, *기울임체*, ~~취소선~~, <ins>밑줄</ins> 을 사용할 수 있습니다.
 
 ### 목록
 - 순서 없는 목록
@@ -19,11 +19,44 @@ import { Chart } from '@/components/Chart'
 ### 인용문
 > MDX는 마크다운과 JSX의 강력한 조합입니다.
 > 여러 줄의 인용문도 가능합니다.
+>> 중첩된 인용문도 가능합니다.
 
 ### 코드 블록
-```javascript
+```javascript title="javascript" caption="코드 블록 예시"
 const greeting = "Hello, MDX!";
 console.log(greeting);
+```
+
+```typescript
+const greeting: string = "Hello, MDX!";
+console.log(greeting);
+```
+
+```python
+def hello():
+    print("Hello, MDX!")
+```
+
+```bash
+$ npm install
+```
+
+```html
+<div>Hello, MDX!</div>
+```
+
+```css
+body {
+  background-color: #f0f0f0;
+}
+```
+
+```java
+public class HelloMDX {
+    public static void main(String[] args) {
+        System.out.println("Hello, MDX!");
+    }
+}
 ```
 
 인라인 코드는 `이렇게` 작성합니다.
@@ -91,32 +124,6 @@ export const MyComponent = () => <span>커스텀 컴포넌트</span>
 
 <MyComponent />
 
-
-Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.
-
-# Files
-
-StackEdit stores your files in your browser, which means all your files are automatically saved locally and are accessible **offline!**
-
-## Create files and folders
-
-The file explorer is accessible using the button in left corner of the navigation bar. You can create a new file by clicking the **New file** button in the file explorer. You can also create folders by clicking the **New folder** button.
-
-## Switch to another file
-
-All your files and folders are presented as a tree in the file explorer. You can switch from one to another by clicking a file in the tree.
-
-## Rename a file
-
-You can rename the current file by clicking the file name in the navigation bar or by clicking the **Rename** button in the file explorer.
-
-## Delete a file
-
-You can delete the current file by clicking the **Remove** button in the file explorer. The file will be moved into the **Trash** folder and automatically deleted after 7 days of inactivity.
-
-## Export a file
-
-You can export the current file by clicking **Export to disk** in the menu. You can choose to export the file as plain Markdown, as HTML using a Handlebars template or as a PDF.
 
 
 # Synchronization

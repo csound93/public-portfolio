@@ -40,10 +40,9 @@
   line-height: 1.5;
   font-size: 0.875rem;
   counter-reset: line;
-  padding-top: 1.5rem; /* 1rem에서 1.5rem로 증가 */
 }
 
-/* 코드 블록 title 스타일링 */
+/* 코드 블록 language 스타일링 */
 .markdown-body pre[data-language]::before {
   content: attr(data-language);
   position: absolute;
@@ -59,22 +58,23 @@
 }
 
 /* 코드 블록 caption 스타일링 */
-.markdown-body pre::after {
-  content: attr(data-caption);
+[data-rehype-pretty-code-caption] {
   display: block;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.5rem;
   font-size: 0.875rem;
   color: #9ca3af;
   text-align: center;
+  border-top: 1px solid rgba(156, 163, 175, 0.2);
 }
 
 [data-line] {
   display: block;
-  padding-left: 3rem;
+  padding-left: 1.5rem;
   padding-right: 1rem;
   border-left: 2px solid transparent;
   position: relative;
-  top: 1rem; /* 0.5rem에서 1rem으로 증가 */
+  top: 0.6rem;
 }
 
 [data-line]::before {
@@ -132,41 +132,3 @@
   border-radius: 6px;
 }
 
-/* Mermaid 다이어그램 스타일링 */
-.mermaid {
-  background-color: transparent !important;
-  text-align: center;
-  margin: 1rem 0;
-}
-
-.mermaid svg {
-  max-width: 100%;
-  height: auto;
-}
-
-.mermaid .label {
-  color: #e5e7eb !important;
-}
-
-.mermaid .node rect,
-.mermaid .node circle,
-.mermaid .node ellipse,
-.mermaid .node polygon,
-.mermaid .node path {
-  fill: #374151 !important;
-  stroke: #6b7280 !important;
-}
-
-.mermaid .edgePath .path {
-  stroke: #6b7280 !important;
-}
-
-.mermaid .arrowheadPath {
-  fill: #6b7280 !important;
-  stroke: #6b7280 !important;
-}
-
-.mermaid .edgeLabel {
-  background-color: #1f2937 !important;
-  color: #e5e7eb !important;
-}

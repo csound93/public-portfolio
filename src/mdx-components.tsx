@@ -43,30 +43,11 @@ const Code = ({
 
 const Pre = ({ children, ...props }: PreProps) => {
   const codeElement = React.Children.toArray(children)[0] as React.ReactElement<TokenProps>;
-  console.log('Pre component - Full structure:', {
-    children: JSON.stringify(
-      children,
-      (key, value) => {
-        if (React.isValidElement(value)) {
-          return {
-            type: value.type,
-            props: value.props,
-          };
-        }
-        return value;
-      },
-      2
-    ),
-    props,
-    codeElementProps: codeElement?.props,
-  });
-
   const codeText = extractContent(codeElement?.props?.children);
   const language = props['data-language'];
 
   // Mermaid 다이어그램 처리
   if (language === 'mermaid') {
-    console.log('Mermaid diagram detected:', { language, codeText });
     return <MermaidDiagram chart={codeText} />;
   }
 

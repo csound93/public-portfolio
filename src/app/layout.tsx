@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import 'katex/dist/katex.min.css'
 import 'github-markdown-css/github-markdown.css'
+import 'prismjs/themes/prism-tomorrow.css'
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 
 export const metadata: Metadata = {
   title: "Create Next App",

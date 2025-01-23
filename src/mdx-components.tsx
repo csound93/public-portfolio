@@ -1,6 +1,33 @@
 import type { MDXComponents } from 'mdx/types'
 import { CopyButton } from './components/CopyButton'
-import React, { PropsWithChildren } from 'react'
+import { MermaidDiagram } from './components/MermaidDiagram'
+import React, { PropsWithChildren, ReactElement } from 'react'
+
+interface PreProps extends React.HTMLAttributes<HTMLPreElement> {
+  children: React.ReactNode;
+  'data-language'?: string;
+}
+
+interface TokenProps {
+  children?: React.ReactNode;
+  className?: string;
+}
+
+interface ElementWithChildren {
+  props: {
+    children?: React.ReactNode;
+  };
+}
+
+const extractContent = (node: React.ReactNode): string => {
+  if (typeof node === 'string') return node;
+  if (Array.isArray(node)) return node.map(extractContent).join('');
+  if (React.isValidElement(node)) {
+    const element = node as ReactElement & ElementWithChildren;
+    return extractContent(element.props.children || '');
+  }
+  return '';
+};
 
 const Code = ({ children, className, ...props }: PropsWithChildren<React.HTMLAttributes<HTMLElement>>) => {
   return (
@@ -10,35 +37,29 @@ const Code = ({ children, className, ...props }: PropsWithChildren<React.HTMLAtt
   )
 }
 
-interface PreProps extends React.HTMLAttributes<HTMLPreElement> {
-  children: React.ReactNode;
-}
-
-interface TokenProps {
-  children?: React.ReactNode;
-  className?: string;
-}
-
 const Pre = ({ children, ...props }: PreProps) => {
   const codeElement = React.Children.toArray(children)[0] as React.ReactElement<TokenProps>;
-  let codeText = '';
-  
-  const extractTextFromToken = (token: React.ReactNode): string => {
-    if (typeof token === 'string') return token;
-    if (React.isValidElement(token)) {
-      const elementToken = token as React.ReactElement<TokenProps>;
-      if (elementToken.props?.children) {
-        if (Array.isArray(elementToken.props.children)) {
-          return elementToken.props.children.map(extractTextFromToken).join('');
-        }
-        return extractTextFromToken(elementToken.props.children);
+  console.log('Pre component - Full structure:', { 
+    children: JSON.stringify(children, (key, value) => {
+      if (React.isValidElement(value)) {
+        return {
+          type: value.type,
+          props: value.props
+        };
       }
-    }
-    return '';
-  };
+      return value;
+    }, 2),
+    props,
+    codeElementProps: codeElement?.props
+  });
+  
+  const codeText = extractContent(codeElement?.props?.children);
+  const language = props['data-language'];
 
-  if (codeElement?.props?.children) {
-    codeText = extractTextFromToken(codeElement);
+  // Mermaid 다이어그램 처리
+  if (language === 'mermaid') {
+    console.log('Mermaid diagram detected:', { language, codeText });
+    return <MermaidDiagram chart={codeText} />;
   }
 
   return (

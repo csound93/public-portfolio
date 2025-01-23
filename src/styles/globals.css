@@ -103,3 +103,43 @@
   background-color: rgba(110, 118, 129, 0.4);
   border-radius: 6px;
 }
+
+/* Mermaid 다이어그램 스타일링 */
+.mermaid {
+  background-color: transparent !important;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.mermaid .label {
+  color: #e5e7eb !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon,
+.mermaid .node path {
+  fill: #374151 !important;
+  stroke: #6b7280 !important;
+}
+
+.mermaid .edgePath .path {
+  stroke: #6b7280 !important;
+}
+
+.mermaid .arrowheadPath {
+  fill: #6b7280 !important;
+  stroke: #6b7280 !important;
+}
+
+.mermaid .edgeLabel {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}

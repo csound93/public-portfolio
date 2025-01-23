@@ -32,4 +32,11 @@ const withMDX = createMDX({
 
 export default withMDX({
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.mmd$/,
+      type: 'asset/source',
+    });
+    return config;
+  },
 }) 

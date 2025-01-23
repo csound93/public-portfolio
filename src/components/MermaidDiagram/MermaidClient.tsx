@@ -1,43 +1,75 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import mermaid from 'mermaid';
 
 interface MermaidProps {
   chart: string;
+  theme: 'light' | 'dark';
 }
 
-export default function MermaidClient({ chart }: MermaidProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+let diagramId = 0;
+
+const MermaidSVG = ({ svg }: { svg: string }) => {
+  const svgContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    if (svgContainerRef.current) {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(svg, 'image/svg+xml');
+      const svgElement = doc.documentElement;
+      
+      while (svgContainerRef.current.firstChild) {
+        svgContainerRef.current.removeChild(svgContainerRef.current.firstChild);
+      }
+      svgContainerRef.current.appendChild(svgElement);
+    }
+  }, [svg]);
 
+  return <div ref={svgContainerRef} />;
+};
+
+export default function MermaidClient({ chart, theme }: MermaidProps) {
+  const id = useRef(`mermaid-diagram-${++diagramId}`);
+  const [svgContent, setSvgContent] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
     const renderDiagram = async () => {
       try {
-        // Mermaid 초기화
-        mermaid.initialize({
+        // Mermaid 설정
+        const config = {
           startOnLoad: false,
-          theme: 'dark',
-          securityLevel: 'loose',
-        });
+          securityLevel: 'loose' as const,
+          theme: theme === 'light' ? 'default' as const : 'dark' as const,
+        };
 
-        // 기존 내용 초기화
-        container.innerHTML = chart;
+        // 새로운 설정으로 초기화
+        mermaid.initialize(config);
 
-        // 다이어그램 렌더링
-        await mermaid.run({
-          nodes: [container],
-        });
+        const { svg } = await mermaid.render(id.current, chart);
+        setSvgContent(svg);
+        setError(null);
       } catch (error) {
         console.error('Failed to render mermaid diagram:', error);
-        container.textContent = 'Failed to render diagram';
+        setError('Failed to render diagram');
       }
     };
 
     renderDiagram();
-  }, [chart]);
+  }, [chart, theme]);
 
-  return <div ref={containerRef} className="mermaid" />;
+  if (error) {
+    return (
+      <div className="p-4 text-red-500 border border-red-300 rounded">
+        {error}
+      </div>
+    );
+  }
+
+  return (
+    <div className="my-4 overflow-auto">
+      {svgContent && <MermaidSVG svg={svgContent} />}
+    </div>
+  );
 }

@@ -1,7 +1,7 @@
-import type { MDXComponents } from 'mdx/types'
-import { CopyButton } from './components/CopyButton'
-import { MermaidDiagram } from './components/MermaidDiagram/index'
-import React, { PropsWithChildren, ReactElement } from 'react'
+import type { MDXComponents } from 'mdx/types';
+import { CopyButton } from './components/CopyButton';
+import { MermaidDiagram } from './components/MermaidDiagram/index';
+import React, { PropsWithChildren, ReactElement } from 'react';
 
 interface PreProps extends React.HTMLAttributes<HTMLPreElement> {
   children: React.ReactNode;
@@ -29,30 +29,38 @@ const extractContent = (node: React.ReactNode): string => {
   return '';
 };
 
-const Code = ({ children, className, ...props }: PropsWithChildren<React.HTMLAttributes<HTMLElement>>) => {
+const Code = ({
+  children,
+  className,
+  ...props
+}: PropsWithChildren<React.HTMLAttributes<HTMLElement>>) => {
   return (
     <code className={className} {...props}>
       {children}
     </code>
-  )
-}
+  );
+};
 
 const Pre = ({ children, ...props }: PreProps) => {
   const codeElement = React.Children.toArray(children)[0] as React.ReactElement<TokenProps>;
-  console.log('Pre component - Full structure:', { 
-    children: JSON.stringify(children, (key, value) => {
-      if (React.isValidElement(value)) {
-        return {
-          type: value.type,
-          props: value.props
-        };
-      }
-      return value;
-    }, 2),
+  console.log('Pre component - Full structure:', {
+    children: JSON.stringify(
+      children,
+      (key, value) => {
+        if (React.isValidElement(value)) {
+          return {
+            type: value.type,
+            props: value.props,
+          };
+        }
+        return value;
+      },
+      2
+    ),
     props,
-    codeElementProps: codeElement?.props
+    codeElementProps: codeElement?.props,
   });
-  
+
   const codeText = extractContent(codeElement?.props?.children);
   const language = props['data-language'];
 
@@ -67,13 +75,13 @@ const Pre = ({ children, ...props }: PreProps) => {
       <CopyButton code={codeText} />
       {children}
     </pre>
-  )
-}
+  );
+};
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     code: Code,
     pre: Pre,
     ...components,
-  }
+  };
 }

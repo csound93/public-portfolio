@@ -38,12 +38,8 @@ export function CopyButton({ code }: CopyButtonProps) {
   };
 
   return (
-    <button
-      className="code-copy-button"
-      onClick={handleClick}
-      aria-label="Copy code to clipboard"
-    >
+    <button className="code-copy-button" onClick={handleClick} aria-label="Copy code to clipboard">
       {copied ? '복사됨!' : '복사'}
     </button>
   );
-} 
+}

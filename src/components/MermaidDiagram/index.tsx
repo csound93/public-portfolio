@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 
 const MermaidClient = dynamic(() => import('./MermaidClient'), {
-  loading: () => <div>Loading diagram...</div>
+  loading: () => <div>Loading diagram...</div>,
 });
 
 interface MermaidProps {
@@ -12,4 +12,4 @@ interface MermaidProps {
 
 export function MermaidDiagram({ chart }: MermaidProps) {
   return <MermaidClient chart={chart} />;
-} 
+}

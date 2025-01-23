@@ -20,15 +20,15 @@ export default function MermaidClient({ chart }: MermaidProps) {
         mermaid.initialize({
           startOnLoad: false,
           theme: 'dark',
-          securityLevel: 'loose'
+          securityLevel: 'loose',
         });
 
         // 기존 내용 초기화
         container.innerHTML = chart;
-        
+
         // 다이어그램 렌더링
         await mermaid.run({
-          nodes: [container]
+          nodes: [container],
         });
       } catch (error) {
         console.error('Failed to render mermaid diagram:', error);
@@ -40,4 +40,4 @@ export default function MermaidClient({ chart }: MermaidProps) {
   }, [chart]);
 
   return <div ref={containerRef} className="mermaid" />;
-} 
+}

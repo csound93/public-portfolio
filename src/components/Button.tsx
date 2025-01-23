@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React from 'react';
 
@@ -18,16 +18,16 @@ export const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
         borderRadius: '0.25rem',
         border: 'none',
         cursor: 'pointer',
-        transition: 'background-color 0.2s'
+        transition: 'background-color 0.2s',
       }}
-      onMouseOver={(e) => {
+      onMouseOver={e => {
         (e.target as HTMLButtonElement).style.backgroundColor = '#2563eb';
       }}
-      onMouseOut={(e) => {
+      onMouseOut={e => {
         (e.target as HTMLButtonElement).style.backgroundColor = '#3b82f6';
       }}
     >
       {children}
     </button>
   );
-}; 
+};

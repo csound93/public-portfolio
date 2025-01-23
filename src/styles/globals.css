@@ -13,7 +13,7 @@
   --code-highlight-border: #60a5fa;
   
   /* 복사 버튼 색상 */
-  --copy-button-color: #9ca3af;
+  --copy-button-color: #4b5563;
   --copy-button-bg: rgba(0, 0, 0, 0.2);
   --copy-button-border: #4b5563;
   --copy-button-hover-color: #ffffff;
@@ -26,14 +26,29 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    /* 기본 테마 색상 */
     --background: #0a0a0a;
     --foreground: #ededed;
     
-    /* 다크모드 코드 블록 색상 */
+    /* 코드 블록 색상 */
     --code-block-bg: #1f2937;
     --code-block-color: #e5e7eb;
     --code-block-language-color: #9ca3af;
     --code-block-language-bg: rgba(0, 0, 0, 0.2);
+    --code-line-number-color: #9ca3af;
+    --code-highlight-bg: rgba(200, 200, 255, 0.1);
+    --code-highlight-border: #60a5fa;
+    
+    /* 복사 버튼 색상 */
+    --copy-button-color: #d1d5db;
+    --copy-button-bg: rgba(255, 255, 255, 0.1);
+    --copy-button-border: #6b7280;
+    --copy-button-hover-color: #ffffff;
+    --copy-button-hover-bg: rgba(255, 255, 255, 0.2);
+    --copy-button-active-bg: rgba(255, 255, 255, 0.3);
+    
+    /* 인라인 코드 색상 */
+    --inline-code-bg: rgba(110, 118, 129, 0.4);
   }
 }
 

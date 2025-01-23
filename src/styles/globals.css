@@ -37,7 +37,6 @@
 .markdown-body pre > code {
   display: block;
   line-height: 1.5;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.875rem;
   counter-reset: line;
 }
@@ -118,7 +117,6 @@
 
 .mermaid .label {
   color: #e5e7eb !important;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .mermaid .node rect,

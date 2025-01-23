@@ -28,41 +28,42 @@
 .markdown-body pre {
   position: relative;
   margin: 1rem 0;
-  padding: 1rem 0;
+  padding: 1rem;
   border-radius: 0.5rem;
   background-color: #1f2937 !important;
+  overflow-x: auto;
 }
 
 .markdown-body pre > code {
   display: block;
-  overflow-x: auto;
-  padding: 0 1rem !important;
+  line-height: 1.5;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.875rem;
-  line-height: 1.5;
-  background: transparent !important;
   counter-reset: line;
 }
 
-/* 라인 넘버 스타일링 */
-.markdown-body pre[data-line-numbers] > code {
-  padding-left: 3.5rem !important;
+[data-line] {
+  display: block;
+  padding-left: 3rem;
+  padding-right: 1rem;
+  border-left: 2px solid transparent;
 }
 
-.markdown-body pre[data-line-numbers] > code > .line {
-  position: relative;
-  padding-left: 0.5rem;
-}
-
-.markdown-body pre[data-line-numbers] > code > .line::before {
+[data-line]::before {
   counter-increment: line;
   content: counter(line);
-  position: absolute;
-  left: -3rem;
-  width: 2.5rem;
-  color: #6b7280;
+  display: inline-block;
+  width: 2rem;
+  margin-left: -3rem;
+  padding-right: 1rem;
   text-align: right;
-  font-size: 0.75rem;
+  color: #6b7280;
+  user-select: none;
+}
+
+[data-line].highlighted {
+  background-color: rgba(200, 200, 255, 0.1);
+  border-left-color: #60a5fa;
 }
 
 /* 코드 복사 버튼 */

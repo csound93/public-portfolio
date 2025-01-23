@@ -2,8 +2,22 @@ import createMDX from '@next/mdx'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import remarkGfm from 'remark-gfm'
-import rehypePrism from 'rehype-prism-plus'
-import rehypeCodeTitles from 'rehype-code-titles'
+import rehypePrettyCode from 'rehype-pretty-code'
+
+const prettyCodeOptions = {
+  theme: 'github-dark',
+  onVisitLine(node) {
+    if (node.children.length === 0) {
+      node.children = [{type: 'text', value: ' '}]
+    }
+  },
+  onVisitHighlightedLine(node) {
+    node.properties.className.push('highlighted')
+  },
+  onVisitHighlightedWord(node) {
+    node.properties.className = ['word']
+  },
+}
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
@@ -11,15 +25,7 @@ const withMDX = createMDX({
     remarkPlugins: [remarkMath, remarkGfm],
     rehypePlugins: [
       rehypeKatex,
-      rehypeCodeTitles,
-      [rehypePrism, { 
-        showLineNumbers: true,
-        ignoreMissing: true,
-        aliases: {
-          js: 'javascript',
-          sh: 'bash'
-        }
-      }],
+      [rehypePrettyCode, prettyCodeOptions],
     ],
   },
 })

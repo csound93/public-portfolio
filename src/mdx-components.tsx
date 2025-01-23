@@ -16,6 +16,7 @@ interface PreProps extends React.HTMLAttributes<HTMLPreElement> {
 
 interface TokenProps {
   children?: React.ReactNode;
+  className?: string;
 }
 
 const Pre = ({ children, ...props }: PreProps) => {

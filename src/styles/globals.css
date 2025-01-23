@@ -2,24 +2,24 @@
   /* 기본 테마 색상 */
   --background: #ffffff;
   --foreground: #171717;
-  
+
   /* 코드 블록 색상 */
   --code-block-bg: #f3f4f6;
   --code-block-color: #1f2937;
-  --code-block-language-color: #4b5563;
-  --code-block-language-bg: rgba(0, 0, 0, 0.1);
+  --code-block-language-color: #9ca3af;
+  --code-block-language-bg: rgba(255, 255, 255, 0.1);
   --code-line-number-color: #6b7280;
   --code-highlight-bg: rgba(200, 200, 255, 0.1);
   --code-highlight-border: #60a5fa;
-  
+
   /* 복사 버튼 색상 */
-  --copy-button-color: #4b5563;
-  --copy-button-bg: rgba(0, 0, 0, 0.2);
-  --copy-button-border: #4b5563;
+  --copy-button-color: #d1d5db;
+  --copy-button-bg: rgba(255, 255, 255, 0.1);
+  --copy-button-border: #6b7280;
   --copy-button-hover-color: #ffffff;
-  --copy-button-hover-bg: rgba(0, 0, 0, 0.4);
-  --copy-button-active-bg: rgba(0, 0, 0, 0.6);
-  
+  --copy-button-hover-bg: rgba(255, 255, 255, 0.2);
+  --copy-button-active-bg: rgba(255, 255, 255, 0.3);
+
   /* 인라인 코드 색상 */
   --inline-code-bg: rgba(110, 118, 129, 0.4);
 }
@@ -29,24 +29,14 @@
     /* 기본 테마 색상 */
     --background: #0a0a0a;
     --foreground: #ededed;
-    
+
     /* 코드 블록 색상 */
     --code-block-bg: #1f2937;
     --code-block-color: #e5e7eb;
-    --code-block-language-color: #9ca3af;
-    --code-block-language-bg: rgba(0, 0, 0, 0.2);
     --code-line-number-color: #9ca3af;
     --code-highlight-bg: rgba(200, 200, 255, 0.1);
     --code-highlight-border: #60a5fa;
-    
-    /* 복사 버튼 색상 */
-    --copy-button-color: #d1d5db;
-    --copy-button-bg: rgba(255, 255, 255, 0.1);
-    --copy-button-border: #6b7280;
-    --copy-button-hover-color: #ffffff;
-    --copy-button-hover-bg: rgba(255, 255, 255, 0.2);
-    --copy-button-active-bg: rgba(255, 255, 255, 0.3);
-    
+
     /* 인라인 코드 색상 */
     --inline-code-bg: rgba(110, 118, 129, 0.4);
   }
@@ -77,7 +67,6 @@
   padding: 1rem;
   padding-top: 2.5rem;
   border-radius: 0.5rem;
-  background-color: var(--code-block-bg) !important;
   overflow-x: auto;
 }
 
@@ -86,7 +75,6 @@
   line-height: 1.5;
   font-size: 0.875rem;
   counter-reset: line;
-  color: var(--code-block-color);
 }
 
 /* 코드 블록 language 스타일링 */
@@ -98,8 +86,8 @@
   padding: 0.25rem 1rem;
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--code-block-language-color);
   background-color: var(--code-block-language-bg);
+  color: var(--code-block-language-color);
   border-top-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
@@ -110,7 +98,6 @@
   margin-top: 0.75rem;
   padding: 0.5rem;
   font-size: 0.875rem;
-  color: #9ca3af;
   text-align: center;
   border-top: 1px solid rgba(156, 163, 175, 0.2);
 }
@@ -132,13 +119,7 @@
   margin-left: -3rem;
   padding-right: 1rem;
   text-align: right;
-  color: var(--code-line-number-color);
   user-select: none;
-}
-
-[data-line].highlighted {
-  background-color: var(--code-highlight-bg);
-  border-left-color: var(--code-highlight-border);
 }
 
 /* 코드 복사 버튼 */
@@ -177,28 +158,4 @@
   font-size: 85%;
   background-color: var(--inline-code-bg);
   border-radius: 6px;
-}
-
-@media (prefers-color-scheme: dark) {
-  .markdown-body pre {
-    background-color: #1f2937 !important;
-  }
-
-  .markdown-body pre > code {
-    color: #e5e7eb;
-  }
-
-  .markdown-body pre[data-language]::before {
-    color: #9ca3af;
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-
-  [data-line].highlighted {
-    background-color: rgba(200, 200, 255, 0.1);
-    border-left-color: #60a5fa;
-  }
-
-  .markdown-body code:not(pre code) {
-    background-color: rgba(110, 118, 129, 0.4);
-  }
 }

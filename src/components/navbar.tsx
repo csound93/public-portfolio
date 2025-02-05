@@ -24,7 +24,7 @@ export function Navbar() {
           {/* 로고 */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/next.svg"
+              src="/svg/next.svg"
               alt="Next.js Logo"
               width={100}
               height={24}
@@ -80,29 +80,33 @@ export function Navbar() {
 
         {/* 모바일 메뉴 */}
         {isOpen && (
-          <div className="md:hidden">
-            <div className="space-y-1 pb-3 pt-2">
+          <div className="border-t md:hidden">
+            <div className="space-y-1 p-2">
               <Link
                 href="/docs"
                 className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
+                onClick={() => setIsOpen(false)}
               >
                 Docs
               </Link>
               <Link
                 href="/blog"
                 className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
+                onClick={() => setIsOpen(false)}
               >
                 Blog
               </Link>
               <Link
                 href="/tools"
                 className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
+                onClick={() => setIsOpen(false)}
               >
                 Tools
               </Link>
               <Link
                 href="/about"
                 className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
+                onClick={() => setIsOpen(false)}
               >
                 About
               </Link>

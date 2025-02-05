@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Menu } from "lucide-react"
+import { FaBars } from "react-icons/fa"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -21,7 +21,6 @@ export function Navbar() {
     <nav className="border-b">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* 로고 */}
           <Link href="/" className="flex items-center">
             <Image
               src="/svg/next.svg"
@@ -31,8 +30,6 @@ export function Navbar() {
               priority
             />
           </Link>
-
-          {/* 데스크톱 메뉴 */}
           <div className="hidden md:block">
             <NavigationMenu>
               <NavigationMenuList>
@@ -68,17 +65,15 @@ export function Navbar() {
             </NavigationMenu>
           </div>
 
-          {/* 모바일 메뉴 버튼 */}
           <button
             className="md:hidden"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            <Menu className="h-6 w-6" />
+            <FaBars className="h-6 w-6" />
           </button>
         </div>
 
-        {/* 모바일 메뉴 */}
         {isOpen && (
           <div className="border-t md:hidden">
             <div className="space-y-1 p-2">
